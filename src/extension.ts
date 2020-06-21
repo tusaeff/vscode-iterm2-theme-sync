@@ -13,21 +13,6 @@ export function activate(context: vscode.ExtensionContext) {
 			const vscodeColorTheme = await getColorTheme(context);
 			const itermProfile = vscodeColorThemeToItermProfile(vscodeColorTheme);
 
-			setTimeout(() => {
-				const setBG = `tmux set-option -g status-bg "${vscodeColorTheme.statusBarBackground}"`;
-				const setFG = `tmux set-option -g status-fg "${vscodeColorTheme.statusBarForeground}"`;
-
-				const command = `${setBG};${setFG}`;
-				exec(command, (err, stdout, stderr) => {
-					command;
-					if (err && err.code) {
-						// debugger;
-					}
-
-					// debugger
-				});
-			}, 500)
-
 			await updateDynamicProfile(itermProfile);
 			// debugger;
 		} catch (err) {
