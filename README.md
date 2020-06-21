@@ -1,4 +1,4 @@
-# VSCode → iTerm2 theme sync
+# iTerm2 theme sync
 
   Syncs selected VSCode theme with ITerm2 color profile
 

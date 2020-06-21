@@ -1,9 +1,9 @@
 {
   "name": "vscode-iterm2-theme-sync",
-  "displayName": "VSCode → iTerm2 Theme Sync",
+  "displayName": "iTerm2 Theme Sync",
   "publisher": "tusaeff",
   "description": "",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "icon": "logo.png",
   "repository": {
     "url": "https://github.com/tusaeff/vscode-iterm2-theme-sync",
