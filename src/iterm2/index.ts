@@ -7,7 +7,7 @@ export const vscodeColorThemeToItermProfile = (
   theme: IColorTheme
 ): Partial<IItermProfile> => {
   return {
-    'Name': theme.name,
+    'Name': `${theme.name} (synchronized with VSCode)`,
     'Ansi 0 Color': vscodeColorToItermColor(theme.ansi.normal.black),
     'Ansi 1 Color': vscodeColorToItermColor(theme.ansi.normal.red),
     'Ansi 2 Color': vscodeColorToItermColor(theme.ansi.normal.green),
@@ -82,8 +82,8 @@ const parseRGBA = (
 };
 
 export const updateDynamicProfile = (profile: Partial<IItermProfile>) => {
-  const directoryPath =
-    '/Users/tusaeff/Library/Application\ Support/iTerm2/DynamicProfiles/';
+  // TODO: FIXIT
+  const directoryPath ='/Users/tusaeff/Library/Application\ Support/iTerm2/DynamicProfiles/';
   const profileName = 'vscode-synced.json';
 
   return new Promise((resolve, reject) => {
