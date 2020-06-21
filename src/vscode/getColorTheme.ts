@@ -15,7 +15,7 @@ export const getColorTheme = (context: vscode.ExtensionContext) => {
     );
 
     ref.webview.html = await getWebViewContent(
-      context.asAbsolutePath('./webview/index.js'),
+      context.asAbsolutePath('./dist/webview.html'),
     );
 
     ref.webview.onDidReceiveMessage((message) => {
@@ -25,33 +25,14 @@ export const getColorTheme = (context: vscode.ExtensionContext) => {
   });
 };
 
-const wrapWithHtml = (content: string) => {
-  return `
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-      <script>
-        ${content}
-      </script>
-    </body>
-  </html>
-`;
-};
-
-const getWebViewContent = async (webviewScriptPath: string) => {
+const getWebViewContent = async (htmlPath: string) => {
   return new Promise<string>((resolve, reject) => {
-    fs.readFile(webviewScriptPath, 'utf8', (err: Error, script: string) => {
+    fs.readFile(htmlPath, 'utf8', (err: Error, html: string) => {
       if (err) {
         return reject(err);
       }
 
-      // TODO: fix webview bundling
-      script = script.replace('Object.defineProperty(exports, "__esModule", { value: true });', '');
-      resolve(wrapWithHtml(script));
+      resolve(html);
     });
   });
 };
