@@ -1,6 +1,7 @@
 import { IItermProfile } from '../types/index';
 
-export const defaultProfile: Omit<IItermProfile, 'Guid'> = {
+export const defaultProfile = {
+  "Guid": '4Cc4_4uUob25OYlN90jn5',
   "Use Non-ASCII Font" : false,
   "Tags" : [],
   "Ansi 12 Color" : {
