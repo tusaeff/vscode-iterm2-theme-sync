@@ -1,22 +1,29 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { getColorTheme } from './vscode/getColorTheme';
-import { vscodeColorThemeToItermProfile, updateDynamicProfile } from './iterm2/index';
+import {
+  vscodeColorThemeToItermProfile,
+  updateDynamicProfile,
+} from './iterm2/index';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+async function createProfileWithVSCodeTheme(context: vscode.ExtensionContext) {
+  const vscodeColorTheme = await getColorTheme(context);
+  const itermProfile = vscodeColorThemeToItermProfile(vscodeColorTheme);
+
+  await updateDynamicProfile(itermProfile);
+}
+
 export function activate(context: vscode.ExtensionContext) {
-  vscode.window.onDidChangeActiveColorTheme(async (event) => {		
-		try {
-			const vscodeColorTheme = await getColorTheme(context);
-			const itermProfile = vscodeColorThemeToItermProfile(vscodeColorTheme);
+  createProfileWithVSCodeTheme(context);
 
-			await updateDynamicProfile(itermProfile);
-			// debugger;
-		} catch (err) {
-			debugger;
-		}
+  vscode.window.onDidChangeActiveColorTheme(async (event) => {
+    try {
+      createProfileWithVSCodeTheme(context);
+    } catch (err) {
+      vscode.window.showErrorMessage(
+        `vscode-iterm2-theme-sync: can't sync themes because of error`,
+        err
+      );
+    }
   });
 }
 
