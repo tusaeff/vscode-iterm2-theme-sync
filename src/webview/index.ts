@@ -1,4 +1,4 @@
-import type { IColorTheme } from '../../types';
+import type { IColorTheme } from '../types';
 
 const editorStyle = window.getComputedStyle(document.documentElement);
 
