@@ -414,4 +414,4 @@ export const defaultProfile = {
     "Green Component" : 0.35916060209274292
   },
   "Right Option Key Sends" : 0
-}
+};
