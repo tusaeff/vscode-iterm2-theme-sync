@@ -1,6 +1,7 @@
 {
 	"name": "vscode-iterm2-theme-sync",
 	"displayName": "vscode-iterm2-theme-sync",
+	"publisher": "tusaeff",
 	"description": "",
 	"version": "0.0.1",
 	"engines": {
