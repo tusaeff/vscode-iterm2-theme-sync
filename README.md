@@ -1,11 +1,12 @@
-# vscode-iterm2-theme-sync
+# VSCode → iTerm2 theme sync
 
   Syncs selected VSCode theme with ITerm2 color profile
-  
+
+  ![Screencast](screencast.gif)
+
 ## Install
 1. Install extension in VSCode Extension Marketplace
-2. Open ITerm2 preferences
-3. Open Profiles Tab
-4. There should be a dynamic profile with the name of the current topic in vscode and the postscript "synchronized with VSCode"
-5. Make it the default profile
-6. The iTerm profile should respond to theme changes in VSCode
+2. Once installed, the extension will create a [dynamic iTerm profile](https://www.iterm2.com/documentation-dynamic-profiles.html)
+3. Open iTerm settings and set this new dynamic profile as default (its name should be suffixed with "synchronized with VSCode").
+4. Restart iTerm for changes to take effect or create a new tab
+5. Now we're all set! If you change the theme in VSCode, the iTerm profile must be updated (there may be a small lag while the terminal picks up the update).
