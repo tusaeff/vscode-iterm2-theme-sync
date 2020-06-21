@@ -4,7 +4,7 @@
   "publisher": "tusaeff",
   "description": "",
   "version": "0.1.0",
-  "icon": "./logo.png",
+  "icon": "logo.png",
   "repository": {
     "url": "https://github.com/tusaeff/vscode-iterm2-theme-sync",
     "type": "git"
