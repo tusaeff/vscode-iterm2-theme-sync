@@ -1,3 +1,4 @@
+// loaded as vscode webview
 import type { IColorTheme } from './types';
 
 const editorStyle = window.getComputedStyle(document.documentElement);

@@ -1,7 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { exec } from 'child_process';
 import { getColorTheme } from './vscode/getColorTheme';
 import { vscodeColorThemeToItermProfile, updateDynamicProfile } from './iterm2/index';
 
