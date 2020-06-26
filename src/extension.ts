@@ -6,24 +6,51 @@ import {
 } from './iterm2/index';
 
 async function createProfileWithVSCodeTheme(context: vscode.ExtensionContext) {
-  const vscodeColorTheme = await getColorTheme(context);
-  const itermProfile = vscodeColorThemeToItermProfile(vscodeColorTheme);
+  try {
+    const vscodeColorTheme = await getColorTheme(context);
+    const itermProfile = vscodeColorThemeToItermProfile(vscodeColorTheme);
 
-  await updateDynamicProfile(itermProfile);
+    await updateDynamicProfile(itermProfile);
+
+    return itermProfile;
+  } catch (error) {
+    vscode.window.showErrorMessage(`[iTerm2 Theme Sync] can't sync themes because of error: ${error.message}`);
+  }
+}
+
+function showFirstActivationNotification(profileName: string) {
+  const text = [
+    'The extension «iTerm2 Theme Sync» was successfully installed!',
+    `Now you can open iTerm2 preferences and make the profile called «${profileName}» default. 
+    After restart, iTerm will be synchronized with the selected VSCode theme.`,
+  ];
+
+  return vscode.window.showInformationMessage(text.join('\n'), 'Ok');
+}
+
+async function checkFirstActivation(context: vscode.ExtensionContext) {
+  const wasActivated = context.globalState.get<boolean>('wasActivated');
+
+  if (!wasActivated) {
+    const profile = await createProfileWithVSCodeTheme(context);
+
+    if (!profile) {
+      return;
+    }
+
+    if (profile.Name) {
+      showFirstActivationNotification(profile.Name);
+    }
+
+    await context.globalState.update('wasActivated', true);
+  }
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  createProfileWithVSCodeTheme(context);
+  checkFirstActivation(context);
 
   vscode.window.onDidChangeActiveColorTheme(async (event) => {
-    try {
-      createProfileWithVSCodeTheme(context);
-    } catch (err) {
-      vscode.window.showErrorMessage(
-        `vscode-iterm2-theme-sync: can't sync themes because of error`,
-        err
-      );
-    }
+    createProfileWithVSCodeTheme(context);
   });
 }
 
