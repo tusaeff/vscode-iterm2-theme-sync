@@ -1,11 +1,11 @@
 import { IColorTheme, IItermProfile, IItermColor } from '../types';
-import { defaultProfile } from './default-profile';
 
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
 const VSCODE_DYNAMIC_PROFILE_NAME = 'vscode-synced.json';
+const DYNAMIC_PROFILE_GUID = '1bbe081f-c02f-497b-9ace-1f588dab1a7a'; // TODO: think about names clash
 // relative to ~
 const ITERM2_DYNAMIC_PROFILES_DIRECTORY_PATH = './Library/Application\ Support/iTerm2/DynamicProfiles/';
 
@@ -13,6 +13,7 @@ export const vscodeColorThemeToItermProfile = (
   theme: IColorTheme
 ): Partial<IItermProfile> => {
   return {
+    'Guid': DYNAMIC_PROFILE_GUID,
     'Name': `${theme.name} (synchronized with VSCode)`,
     'Ansi 0 Color': vscodeColorToItermColor(theme.ansi.normal.black),
     'Ansi 1 Color': vscodeColorToItermColor(theme.ansi.normal.red),
@@ -89,7 +90,7 @@ const parseRGBA = (
 
 export const updateDynamicProfile = (profile: Partial<IItermProfile>) => {
   const homeDirectory = os.homedir();
-  const json = JSON.stringify({ Profiles: [{ ...defaultProfile, ...profile }] });
+  const json = JSON.stringify({ Profiles: [{ ...profile }] });
 
   return new Promise((resolve, reject) => {
     fs.writeFile(
