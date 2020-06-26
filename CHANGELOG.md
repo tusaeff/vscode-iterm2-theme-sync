@@ -4,7 +4,7 @@ All notable changes to the "vscode-iterm2-theme-sync" extension will be document
 
 Check [Keep a Changelog](http://keep-achangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## [0.1.3] - 2020-06-27
 ### Added
 - Added welcome message, explaining how to enable iTerm2 Profile
 - Added better error messages
