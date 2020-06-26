@@ -14,7 +14,7 @@ async function createProfileWithVSCodeTheme(context: vscode.ExtensionContext) {
 
     return itermProfile;
   } catch (error) {
-    vscode.window.showErrorMessage(`[iTerm2 Theme Sync] can't sync themes because of error: ${error.message}`);
+    vscode.window.showErrorMessage(`[iTerm2 Theme Sync] An unknown error has occurred :( You can create an issue in the github repository and I will try to fix it as soon as possible. Error message: ${error.message}`);
   }
 }
 
