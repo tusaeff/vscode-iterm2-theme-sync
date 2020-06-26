@@ -20,7 +20,7 @@
   ],
   "main": "./dist/extension.js",
   "scripts": {
-    "version": "update-changelog",
+    "version": "update-changelog && git add CHANGELOG.md",
     "build": "webpack --mode development",
     "watch": "webpack --mode development --watch",
     "vscode:prepublish": "npm run build",
