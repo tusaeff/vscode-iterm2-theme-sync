@@ -19,6 +19,7 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Get Changelog Entry
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v1
@@ -26,9 +27,11 @@ jobs:
           version: ${{ env.CURRENT_VERSION }}
           path: ./CHANGELOG.md
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Publish to VSCode Extensions Marketplace
-      - run: npm install
-      - uses: lannonbr/vsce-action@master
+        uses: lannonbr/vsce-action@master
         with:
           args: "publish -p $VSCE_TOKEN"
         env:
