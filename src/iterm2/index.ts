@@ -36,7 +36,7 @@ export const vscodeColorThemeToItermProfile = (
     'Selection Color': vscodeColorToItermColor(theme.selection),
     'Selected Text Color': vscodeColorToItermColor(theme.selectedText),
     'Cursor Text Color': vscodeColorToItermColor(theme.cursorText),
-    'Cursor Color': vscodeColorToItermColor(theme.cursor),
+    'Cursor Color': vscodeColorToItermColor(theme.cursorText),
     'Background Color': vscodeColorToItermColor(theme.background),
   };
 };
