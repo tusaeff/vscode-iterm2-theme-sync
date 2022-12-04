@@ -49,7 +49,7 @@ async function checkFirstActivation(context: vscode.ExtensionContext) {
 export function activate(context: vscode.ExtensionContext) {
   checkFirstActivation(context);
 
-  vscode.window.onDidChangeActiveColorTheme(async (event) => {
+  vscode.workspace.onDidChangeConfiguration(async (event) => {
     createProfileWithVSCodeTheme(context);
   });
 }
