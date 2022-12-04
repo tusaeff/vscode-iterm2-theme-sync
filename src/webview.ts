@@ -16,6 +16,7 @@ const colorTheme: IColorTheme = {
   selectedText: editorStyle.getPropertyValue('--vscode-editor-foreground'),
   cursorText: editorStyle.getPropertyValue('--vscode-terminalCursor-foreground'),
   cursor: editorStyle.getPropertyValue('--vscode-terminalCursor-background'),
+  bold: editorStyle.getPropertyValue('--vscode-editor-foreground'),
   link: editorStyle.getPropertyValue('--vscode-textLink-foreground'),
   statusBarBackground: editorStyle.getPropertyValue('--vscode-statusBar-background'),
   statusBarForeground: editorStyle.getPropertyValue('--vscode-statusBar-foreground'),
