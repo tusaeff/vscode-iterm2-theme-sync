@@ -1,6 +1,6 @@
 import { IColorTheme, IItermProfile, IItermColor } from '../types';
 
-const fs = require('fs');
+const fs = require('fs/promises');
 const os = require('os');
 const path = require('path');
 
@@ -88,21 +88,21 @@ const parseRGBA = (
   ];
 };
 
-export const updateDynamicProfile = (profile: Partial<IItermProfile>) => {
+export const updateDynamicProfile = async (profile: Partial<IItermProfile>) => {
   const homeDirectory = os.homedir();
   const json = JSON.stringify({ Profiles: [{ ...profile }] });
 
-  return new Promise((resolve, reject) => {
-    fs.writeFile(
-      path.join(
-        homeDirectory,
-        ITERM2_DYNAMIC_PROFILES_DIRECTORY_PATH,
-        VSCODE_DYNAMIC_PROFILE_NAME
-      ),
-      json,
-      (err: any) => {
-        return err ? reject(err) : resolve();
-      }
-    );
-  });
+  const profilePath = path.join(
+    homeDirectory,
+    ITERM2_DYNAMIC_PROFILES_DIRECTORY_PATH,
+    VSCODE_DYNAMIC_PROFILE_NAME
+  );
+  const profilePathTmp = `${profilePath}.tmp`;
+
+  await fs.writeFile(profilePathTmp, json);
+  /**
+   * Overwrite original file with new temp file. This should prevent "Dynamic
+   * Profile Error"s.
+   */
+  await fs.rename(profilePathTmp, profilePath);
 };
